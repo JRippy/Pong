@@ -38,9 +38,9 @@ private:
 	static const int RACKET_MINI_HEIGHT = 40;
 
 	//Maximum axis velocity of the dot
-	static const int RACKET_VEL = 200;
+	static const int RACKET_VEL = 100;
 
 	//Maximum game point
-	static const int END_PARTY_GAME = 1;
+	static const int END_PARTY_GAME = 2;
 };
 

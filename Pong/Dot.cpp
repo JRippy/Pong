@@ -133,6 +133,23 @@ void Dot::render(SDL_Renderer* gRenderer)
 	gDotTexture.render((int)mPosX, (int)mPosY, gRenderer);
 }
 
+void Dot::renderScore(SDL_Renderer* gRenderer)
+{
+	SDL_Color textColor = { 255, 255, 255, 255 };
+
+	/*
+	NOTE
+	Pas de chargement de donnée à chaque frame. Le jeu plante au bout de 40 secondes.
+	*/
+	gInputTextTexture.loadFromRenderedText(std::to_string(player1).c_str(), textColor, gRenderer);
+	gPromptTextTexture.render((c.getScreenWidth() - gPromptTextTexture.getWidth()) / 4, 0, gRenderer);
+	gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) / 4, gPromptTextTexture.getHeight(), gRenderer);
+
+	gInputTextTexture.loadFromRenderedText(std::to_string(player2).c_str(), textColor, gRenderer);
+	gPromptTextTexture.render(((c.getScreenWidth() - gPromptTextTexture.getWidth())) * 3 / 4, 0, gRenderer);
+	gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) * 3 / 4, gPromptTextTexture.getHeight(), gRenderer);
+}
+
 void Dot::resetPosition() {
 	//Initialize the position
 	mPosX = (float)c.getScreenWidth() / 2 - (float)c.getDotWidth();
@@ -154,42 +171,6 @@ bool Dot::checkCollision(int ax, int ay)
 
 	if (mPosX + c.getDotWidth() >= ax && mPosX <= aw && mPosY + c.getDotHeight() >= ay && mPosY <= ah)
 	{		
-
-		//float d = (float)c.getRacketHeight() / 4;
-		//mVelX = -mVelX;
-		//if (dotMiddle >= ay + d || dotMiddle <= ah - d)
-		//{
-		//	mVelY = 0;
-		//	d = d / 2;
-
-		//	//Racket up
-		//	if (dotMiddle >= ay + d)
-		//	{
-		//		mVelY += 100;
-		//		d = d / 2;
-		//		printf("Haut de la barre M\n");
-
-		//		if (dotMiddle >= ay + d)
-		//		{
-		//			mVelY += 100;
-		//			printf("Haut de la barre B\n");
-		//		}
-		//	}//Racket down
-		//	else if (dotMiddle <= ah - d)
-		//	{
-		//		mVelY -= 100;
-		//		d = d / 2;
-
-		//		if (dotMiddle <= ah - d)
-		//		{
-		//			mVelY -= 100;
-		//		}
-
-		//	}
-		//}
-		
-
-		//-----------------------------------------------------------------------------------------
 		const float Pi = 3.141592654f;
 		float MAXBOUNCEANGLE = 5 * Pi / 12;
 		
@@ -201,7 +182,7 @@ bool Dot::checkCollision(int ax, int ay)
 		mVelY = -c.getDotVel() * sin(bounceAngle);
 
 		printf("Bounce Ball : %f\n", mVelY);
-		//-----------------------------------------------------------------------------------------
+
 		return true;
 	}
 

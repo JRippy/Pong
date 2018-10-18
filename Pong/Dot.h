@@ -45,6 +45,9 @@ public:
 	//Shows the dot on the screen
 	void render(SDL_Renderer* gRenderer);
 
+	//Shows the dot on the screen
+	void renderScore(SDL_Renderer* gRenderer);
+
 	//Reset position initial
 	void resetPosition();
 
@@ -60,6 +63,8 @@ private:
 
 	//Scene textures
 	LTexture gDotTexture;
+	LTexture gPromptTextTexture;
+	LTexture gInputTextTexture;
 
 	//Players
 	int player1, player2 = 0;
