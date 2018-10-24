@@ -65,7 +65,9 @@ private:
 	LTexture gDotTexture;
 	LTexture gPromptTextTexture;
 	LTexture gInputTextTexture;
+	LTexture gInputTextTexture2;
 
 	//Players
-	int player1, player2 = 0;
+	int player1 = 0, player2 = 0;
+	int displayScore1 = -1, displayScore2 = -1;
 };

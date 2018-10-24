@@ -56,34 +56,6 @@ bool Dot::loadMediaDot(SDL_Renderer * gRenderer)
 	return success;
 }
 
-//void Dot::handleEvent(SDL_Event& e)
-//{
-//	//If a key was pressed
-//	if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
-//	{
-//		//Adjust the velocity
-//		switch (e.key.keysym.sym)
-//		{
-//		case SDLK_UP: mVelY -= c.getDotVel(); break;
-//		case SDLK_DOWN: mVelY += c.getDotVel(); break;
-//		case SDLK_LEFT: mVelX -= c.getDotVel(); break;
-//		case SDLK_RIGHT: mVelX += c.getDotVel(); break;
-//		}
-//	}
-//	//If a key was released
-//	else if (e.type == SDL_KEYUP && e.key.repeat == 0)
-//	{
-//		//Adjust the velocity
-//		switch (e.key.keysym.sym)
-//		{
-//		case SDLK_UP: mVelY += c.getDotVel(); break;
-//		case SDLK_DOWN: mVelY -= c.getDotVel(); break;
-//		case SDLK_LEFT: mVelX += c.getDotVel(); break;
-//		case SDLK_RIGHT: mVelX -= c.getDotVel(); break;
-//		}
-//	}
-//}
-
 void Dot::move(float timeStep)
 {
 
@@ -141,13 +113,28 @@ void Dot::renderScore(SDL_Renderer* gRenderer)
 	NOTE
 	Pas de chargement de donnée à chaque frame. Le jeu plante au bout de 40 secondes.
 	*/
-	gInputTextTexture.loadFromRenderedText(std::to_string(player1).c_str(), textColor, gRenderer);
-	gPromptTextTexture.render((c.getScreenWidth() - gPromptTextTexture.getWidth()) / 4, 0, gRenderer);
+	if (displayScore1 != player1 || displayScore2 != player2)
+	{
+		gInputTextTexture.loadFromRenderedText(std::to_string(player1).c_str(), textColor, gRenderer);
+		gPromptTextTexture.render((c.getScreenWidth() - gPromptTextTexture.getWidth()) / 4, 0, gRenderer);
+		//gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) / 4, gPromptTextTexture.getHeight(), gRenderer);
+
+		gInputTextTexture2.loadFromRenderedText(std::to_string(player2).c_str(), textColor, gRenderer);
+		gPromptTextTexture.render(((c.getScreenWidth() - gPromptTextTexture.getWidth())) * 3 / 4, 0, gRenderer);
+		//gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) * 3 / 4, gPromptTextTexture.getHeight(), gRenderer);
+
+		displayScore1 = player1;
+		displayScore2 = player2;
+	}
+
+	//gInputTextTexture.loadFromRenderedText(std::to_string(player1).c_str(), textColor, gRenderer);
+	//gPromptTextTexture.render((c.getScreenWidth() - gPromptTextTexture.getWidth()) / 4, 0, gRenderer);
 	gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) / 4, gPromptTextTexture.getHeight(), gRenderer);
 
-	gInputTextTexture.loadFromRenderedText(std::to_string(player2).c_str(), textColor, gRenderer);
-	gPromptTextTexture.render(((c.getScreenWidth() - gPromptTextTexture.getWidth())) * 3 / 4, 0, gRenderer);
-	gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) * 3 / 4, gPromptTextTexture.getHeight(), gRenderer);
+	//gInputTextTexture.loadFromRenderedText(std::to_string(player2).c_str(), textColor, gRenderer);
+	//gPromptTextTexture.render(((c.getScreenWidth() - gPromptTextTexture.getWidth())) * 3 / 4, 0, gRenderer);
+	gInputTextTexture2.render((c.getScreenWidth() - gInputTextTexture2.getWidth()) * 3 / 4, gPromptTextTexture.getHeight(), gRenderer);
+
 }
 
 void Dot::resetPosition() {
@@ -194,3 +181,32 @@ void Dot::free()
 {
 	gDotTexture.free();
 }
+
+
+//void Dot::handleEvent(SDL_Event& e)
+//{
+//	//If a key was pressed
+//	if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
+//	{
+//		//Adjust the velocity
+//		switch (e.key.keysym.sym)
+//		{
+//		case SDLK_UP: mVelY -= c.getDotVel(); break;
+//		case SDLK_DOWN: mVelY += c.getDotVel(); break;
+//		case SDLK_LEFT: mVelX -= c.getDotVel(); break;
+//		case SDLK_RIGHT: mVelX += c.getDotVel(); break;
+//		}
+//	}
+//	//If a key was released
+//	else if (e.type == SDL_KEYUP && e.key.repeat == 0)
+//	{
+//		//Adjust the velocity
+//		switch (e.key.keysym.sym)
+//		{
+//		case SDLK_UP: mVelY += c.getDotVel(); break;
+//		case SDLK_DOWN: mVelY -= c.getDotVel(); break;
+//		case SDLK_LEFT: mVelX += c.getDotVel(); break;
+//		case SDLK_RIGHT: mVelX -= c.getDotVel(); break;
+//		}
+//	}
+//}

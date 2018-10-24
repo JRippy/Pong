@@ -1,5 +1,9 @@
-﻿  Pong.cpp
-c:\users\julien\source\repos\pong\pong\pong.cpp(277): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-c:\users\julien\source\repos\pong\pong\pong.cpp(278): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-c:\users\julien\source\repos\pong\pong\pong.cpp(282): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+﻿  Config.cpp
+  Dot.cpp
+  Game.cpp
+c:\users\julien\source\repos\pong\pong\game.cpp(31): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+c:\users\julien\source\repos\pong\pong\game.cpp(32): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+  Pong.cpp
+  Racket.cpp
+  Génération de code en cours...
   Pong.vcxproj -> C:\Users\Julien\source\repos\Pong\Debug\Pong.exe
