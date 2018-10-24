@@ -12,7 +12,7 @@ Game::~Game()
 {
 }
 
-bool Game::load(SDL_Renderer* gRenderer)
+bool Game::load(SDL_Renderer& gRenderer)
 {
 	textColor = { 255, 255, 255, 255 };
 	player1 = 0;
@@ -32,7 +32,9 @@ bool Game::load(SDL_Renderer* gRenderer)
 	pDL = c.getScreenHeight() / 20;
 	yDL = pDL;
 
-	return dot.loadMediaDot(gRenderer);
+	dot = Dot(gRenderer);
+
+	return dot.isLoaded() //loadMediaDot(gRenderer);
 }
 
 bool Game::input(SDL_Renderer* gRenderer, bool quit)
@@ -67,7 +69,7 @@ bool Game::input(SDL_Renderer* gRenderer, bool quit)
 	return quit;
 }
 
-void Game::upload()
+void Game::update()
 {
 	if (!endGame(player1, player2))
 	{	

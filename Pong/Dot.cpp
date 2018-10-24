@@ -2,13 +2,13 @@
 #include "Dot.h"
 
 
-Dot::Dot()
+Dot::Dot(SDL_Renderer & gRenderer) :
+	mVelX((float)c.getDotVel()),
+	mVelY((float)c.getDotVel()),
+	isLoaded(false)
 {
 	resetPosition();
-
-	//Initialize the velocity
-	mVelX = (float)c.getDotVel();
-	mVelY = (float)c.getDotVel();
+	isLoaded = loadMediaDot(gRenderer);
 }
 
 int Dot::getPlayer1Score()
@@ -41,7 +41,7 @@ float Dot::getMPosY()
 	return mPosY;
 }
 
-bool Dot::loadMediaDot(SDL_Renderer * gRenderer)
+bool Dot::loadMediaDot(SDL_Renderer & gRenderer)
 {
 	//Loading success flag
 	bool success = true;

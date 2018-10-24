@@ -160,8 +160,8 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="LTexture.h" />
-    <ClInclude Include="LTimer.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Racket.h" />
     <ClInclude Include="resource.h" />
@@ -170,8 +170,8 @@
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="LTexture.cpp" />
-    <ClCompile Include="LTimer.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

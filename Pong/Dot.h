@@ -1,8 +1,8 @@
 #pragma once
 
-#include "LTimer.h"
+#include "Timer.h"
 #include "Config.h"
-#include "LTexture.h"
+#include "Texture.h"
 #include <SDL.h>
 #include <math.h>
 
@@ -22,7 +22,7 @@ public:
 	Config c;
 
 	//Initializes the variables
-	Dot();
+	Dot(SDL_Renderer & gRenderer);
 
 	int getPlayer1Score();
 	int getPlayer2Score();
@@ -34,7 +34,7 @@ public:
 	float getMPosY();
 
 	//load Media Dot
-	bool loadMediaDot(SDL_Renderer* gRenderer);
+	bool loadMediaDot(SDL_Renderer& gRenderer);
 
 	//Takes key presses and adjusts the dot's velocity
 	//void handleEvent(SDL_Event& e);
@@ -58,14 +58,15 @@ public:
 
 
 private:
+	bool isLoaded;
 	float mPosX, mPosY;
 	float mVelX, mVelY;
 
 	//Scene textures
-	LTexture gDotTexture;
-	LTexture gPromptTextTexture;
-	LTexture gInputTextTexture;
-	LTexture gInputTextTexture2;
+	Texture gDotTexture;
+	Texture gPromptTextTexture;
+	Texture gInputTextTexture;
+	Texture gInputTextTexture2;
 
 	//Players
 	int player1 = 0, player2 = 0;

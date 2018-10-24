@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "LTexture.h"
+#include "Texture.h"
 //Using SDL, SDL_image, standard IO, and, strings
 #include <SDL.h>
 #include <SDL_image.h>
@@ -10,7 +10,7 @@
 ////Scene textures
 
 
-LTexture::LTexture()
+Texture::Texture()
 {
 	//Initialize
 	mTexture = NULL;
@@ -30,13 +30,13 @@ LTexture::LTexture()
 	//}
 }
 
-LTexture::~LTexture()
+Texture::~Texture()
 {
 	//Deallocate
 	free();
 }
 
-bool LTexture::loadFromFile(std::string path, SDL_Renderer* gRenderer)
+bool Texture::loadFromFile(std::string path, SDL_Renderer* gRenderer)
 {
 	//Get rid of preexisting texture
 	free();
@@ -117,7 +117,7 @@ bool LTexture::loadFromFile(std::string path, SDL_Renderer* gRenderer)
 }
 
 #ifdef _SDL_TTF_H
-bool LTexture::loadFromRenderedText(std::string textureText, SDL_Color textColor, SDL_Renderer* gRenderer)
+bool Texture::loadFromRenderedText(std::string textureText, SDL_Color textColor, SDL_Renderer* gRenderer)
 {
 	//Get rid of preexisting texture
 	free();
@@ -175,7 +175,7 @@ bool LTexture::loadFromRenderedText(std::string textureText, SDL_Color textColor
 //	return mTexture != NULL;
 //}
 
-void LTexture::free()
+void Texture::free()
 {
 	//Free texture if it exists
 	if (mTexture != NULL)
@@ -189,25 +189,25 @@ void LTexture::free()
 	}
 }
 
-void LTexture::setColor(Uint8 red, Uint8 green, Uint8 blue)
+void Texture::setColor(Uint8 red, Uint8 green, Uint8 blue)
 {
 	//Modulate texture rgb
 	SDL_SetTextureColorMod(mTexture, red, green, blue);
 }
 
-void LTexture::setBlendMode(SDL_BlendMode blending)
+void Texture::setBlendMode(SDL_BlendMode blending)
 {
 	//Set blending function
 	SDL_SetTextureBlendMode(mTexture, blending);
 }
 
-void LTexture::setAlpha(Uint8 alpha)
+void Texture::setAlpha(Uint8 alpha)
 {
 	//Modulate texture alpha
 	SDL_SetTextureAlphaMod(mTexture, alpha);
 }
 
-void LTexture::render(int x, int y, SDL_Renderer* gRenderer, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+void Texture::render(int x, int y, SDL_Renderer* gRenderer, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
@@ -223,23 +223,23 @@ void LTexture::render(int x, int y, SDL_Renderer* gRenderer, SDL_Rect* clip, dou
 	SDL_RenderCopyEx(gRenderer, mTexture, clip, &renderQuad, angle, center, flip);
 }
 
-void LTexture::setAsRenderTarget(SDL_Renderer* gRenderer)
+void Texture::setAsRenderTarget(SDL_Renderer* gRenderer)
 {
 	//Make self render target
 	SDL_SetRenderTarget(gRenderer, mTexture);
 }
 
-int LTexture::getWidth()
+int Texture::getWidth()
 {
 	return mWidth;
 }
 
-int LTexture::getHeight()
+int Texture::getHeight()
 {
 	return mHeight;
 }
 
-bool LTexture::lockTexture()
+bool Texture::lockTexture()
 {
 	bool success = true;
 
@@ -262,7 +262,7 @@ bool LTexture::lockTexture()
 	return success;
 }
 
-bool LTexture::unlockTexture()
+bool Texture::unlockTexture()
 {
 	bool success = true;
 
@@ -283,12 +283,12 @@ bool LTexture::unlockTexture()
 	return success;
 }
 
-void* LTexture::getPixels()
+void* Texture::getPixels()
 {
 	return mPixels;
 }
 
-void LTexture::copyPixels(void* pixels)
+void Texture::copyPixels(void* pixels)
 {
 	//Texture is locked
 	if (mPixels != NULL)
@@ -298,12 +298,12 @@ void LTexture::copyPixels(void* pixels)
 	}
 }
 
-int LTexture::getPitch()
+int Texture::getPitch()
 {
 	return mPitch;
 }
 
-Uint32 LTexture::getPixel32(unsigned int x, unsigned int y)
+Uint32 Texture::getPixel32(unsigned int x, unsigned int y)
 {
 	//Convert the pixels to 32 bit
 	Uint32 *pixels = (Uint32*)mPixels;

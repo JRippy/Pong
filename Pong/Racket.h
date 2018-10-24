@@ -1,8 +1,8 @@
 #pragma once
 
-#include "LTimer.h"
+#include "Timer.h"
 #include "Config.h"
-#include "LTexture.h"
+#include "Texture.h"
 #include <SDL.h>
 
 class Racket
@@ -44,5 +44,5 @@ private:
 	float rVelX, rVelY;
 
 	//Texture
-	LTexture gRacketTexture;
+	Texture gRacketTexture;
 };

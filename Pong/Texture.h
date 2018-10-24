@@ -11,14 +11,14 @@ and may not be redistributed without written permission.*/
 
 #pragma once
 //Texture wrapper class
-class LTexture
+class Texture
 {
 public:
 	//Initializes variables
-	LTexture();
+	Texture();
 
 	//Deallocates memory
-	~LTexture();
+	~Texture();
 
 	//Loads image at specified path
 	bool loadFromFile(std::string path, SDL_Renderer* gRenderer);

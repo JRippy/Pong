@@ -1,4 +1,4 @@
-#include "LTexture.h"
+#include "Texture.h"
 #include "Config.h"
 #include "Dot.h"
 #include "Racket.h"
@@ -13,9 +13,9 @@ public:
 	Game();
 	~Game();
 
-	bool load(SDL_Renderer* gRenderer);
+	bool load(SDL_Renderer& gRenderer);
 	bool input(SDL_Renderer* gRenderer, bool quit);
-	void upload();
+	void update();
 	void draw(SDL_Renderer* gRenderer);
 
 	void initGame();
@@ -29,8 +29,8 @@ public:
 private:
 
 	Config c;
-	LTexture gPromptTextTexture;
-	LTexture gInputTextTexture;
+	Texture gPromptTextTexture;
+	Texture gInputTextTexture;
 
 
 	//Set text color as White
@@ -38,7 +38,7 @@ private:
 	int player1, player2 ;
 
 	//Keeps track of time between steps
-	LTimer stepTimer;
+	Timer stepTimer;
 	float timeStep;
 
 	bool newGame;
