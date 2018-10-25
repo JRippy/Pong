@@ -2,13 +2,17 @@
 #include "Dot.h"
 
 
-Dot::Dot(SDL_Renderer & gRenderer) :
+Dot::Dot()
+{
+}
+
+Dot::Dot(SDL_Renderer * gRenderer) :
 	mVelX((float)c.getDotVel()),
 	mVelY((float)c.getDotVel()),
-	isLoaded(false)
+	Loaded(false)
 {
 	resetPosition();
-	isLoaded = loadMediaDot(gRenderer);
+	Loaded = loadMediaDot(gRenderer);
 }
 
 int Dot::getPlayer1Score()
@@ -41,19 +45,24 @@ float Dot::getMPosY()
 	return mPosY;
 }
 
-bool Dot::loadMediaDot(SDL_Renderer & gRenderer)
+bool Dot::loadMediaDot(SDL_Renderer * gRenderer)
 {
 	//Loading success flag
-	bool success = true;
+	Loaded = true;
 
 	//Load dot texture
 	if (!gDotTexture.loadFromFile("dot.bmp", gRenderer))
 	{
 		printf("Failed to load dot texture!\n");
-		success = false;
+		Loaded = false;
 	}
 
-	return success;
+	return Loaded;
+}
+
+bool Dot::isLoaded()
+{
+	return Loaded;
 }
 
 void Dot::move(float timeStep)

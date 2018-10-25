@@ -13,7 +13,7 @@ public:
 	Game();
 	~Game();
 
-	bool load(SDL_Renderer& gRenderer);
+	bool load(SDL_Renderer* gRenderer);
 	bool input(SDL_Renderer* gRenderer, bool quit);
 	void update();
 	void draw(SDL_Renderer* gRenderer);

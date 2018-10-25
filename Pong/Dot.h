@@ -21,8 +21,10 @@ public:
 
 	Config c;
 
+	Dot();
+
 	//Initializes the variables
-	Dot(SDL_Renderer & gRenderer);
+	Dot(SDL_Renderer * gRenderer);
 
 	int getPlayer1Score();
 	int getPlayer2Score();
@@ -34,7 +36,8 @@ public:
 	float getMPosY();
 
 	//load Media Dot
-	bool loadMediaDot(SDL_Renderer& gRenderer);
+	bool loadMediaDot(SDL_Renderer* gRenderer);
+	bool isLoaded();
 
 	//Takes key presses and adjusts the dot's velocity
 	//void handleEvent(SDL_Event& e);
@@ -58,7 +61,7 @@ public:
 
 
 private:
-	bool isLoaded;
+	bool Loaded;
 	float mPosX, mPosY;
 	float mVelX, mVelY;
 

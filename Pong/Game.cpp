@@ -12,7 +12,7 @@ Game::~Game()
 {
 }
 
-bool Game::load(SDL_Renderer& gRenderer)
+bool Game::load(SDL_Renderer* gRenderer)
 {
 	textColor = { 255, 255, 255, 255 };
 	player1 = 0;
@@ -28,13 +28,14 @@ bool Game::load(SDL_Renderer& gRenderer)
 	timeStep = stepTimer.getTicks() / 1000.f;
 
 	//Dashed line
-	xDL = c.getScreenWidth() / 2 - c.getRacketWidth() / 2;
-	pDL = c.getScreenHeight() / 20;
+	xDL = (float)(c.getScreenWidth() / 2 - c.getRacketWidth() / 2);
+	pDL = (float)(c.getScreenHeight() / 20);
 	yDL = pDL;
 
 	dot = Dot(gRenderer);
+	dot.loadMediaDot(gRenderer);
 
-	return dot.isLoaded() //loadMediaDot(gRenderer);
+	return dot.isLoaded(); //loadMediaDot(gRenderer);
 }
 
 bool Game::input(SDL_Renderer* gRenderer, bool quit)
