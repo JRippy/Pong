@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "Dot.h"
 #include "Racket.h"
+#include "DashedLine.h"
 
 #include <string>
 #include <SDL.h>
@@ -35,14 +36,12 @@ private:
 
 	//Set text color as White
 	SDL_Color textColor;
-	int player1, player2 ;
 
 	//Keeps track of time between steps
 	Timer stepTimer;
 	float timeStep;
 
 	bool newGame;
-
 
 	//The dot that will be moving around on the screen
 	Dot dot;
@@ -53,10 +52,8 @@ private:
 	//Racket that will be moving on the right screen
 	Racket r2;
 
-	//Dashed line
-	float xDL;
-	float pDL;
-	float yDL;
+	//DasheLine
+	DashedLine dl;
 
 	SDL_Event e;
 };

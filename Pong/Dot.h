@@ -3,6 +3,7 @@
 #include "Timer.h"
 #include "Config.h"
 #include "Texture.h"
+#include "Score.h"
 #include <SDL.h>
 #include <math.h>
 
@@ -29,8 +30,8 @@ public:
 	int getPlayer1Score();
 	int getPlayer2Score();
 
-	void setPlayer1Score(int p1);
-	void setPlayer2Score(int p2);
+	//Reinit score
+	void initScore();
 
 	float getMPosX();
 	float getMPosY();
@@ -72,6 +73,6 @@ private:
 	Texture gInputTextTexture2;
 
 	//Players
-	int player1 = 0, player2 = 0;
+	Score scoreDot;
 	int displayScore1 = -1, displayScore2 = -1;
 };

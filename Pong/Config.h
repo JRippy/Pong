@@ -41,6 +41,6 @@ private:
 	static const int RACKET_VEL = 100;
 
 	//Maximum game point
-	static const int END_PARTY_GAME = 1;
+	static const int END_PARTY_GAME = 2;
 };
 

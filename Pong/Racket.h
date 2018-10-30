@@ -35,8 +35,6 @@ public:
 	//Shows the racket on the screen
 	void render(SDL_Renderer* gRenderer);
 
-	void miniRender(SDL_Renderer* gRenderer);	
-
 	void free();
 
 private:

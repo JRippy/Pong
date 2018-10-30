@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include "Score.h"
 #include "config.h"
 
 
@@ -15,8 +16,6 @@ Game::~Game()
 bool Game::load(SDL_Renderer* gRenderer)
 {
 	textColor = { 255, 255, 255, 255 };
-	player1 = 0;
-	player2 = 0;
 
 	newGame = true;
 
@@ -27,13 +26,11 @@ bool Game::load(SDL_Renderer* gRenderer)
 	//Calculate time step
 	timeStep = stepTimer.getTicks() / 1000.f;
 
-	//Dashed line
-	xDL = (float)(c.getScreenWidth() / 2 - c.getRacketWidth() / 2);
-	pDL = (float)(c.getScreenHeight() / 20);
-	yDL = pDL;
+	dl = DashedLine();
 
 	dot = Dot(gRenderer);
 	dot.loadMediaDot(gRenderer);
+
 
 	return dot.isLoaded(); //loadMediaDot(gRenderer);
 }
@@ -72,7 +69,7 @@ bool Game::input(SDL_Renderer* gRenderer, bool quit)
 
 void Game::update()
 {
-	if (!endGame(player1, player2))
+	if (!endGame(dot.getPlayer1Score(), dot.getPlayer2Score()))
 	{	
 		//Calculate time step
 		timeStep = stepTimer.getTicks() / 1000.f;
@@ -92,9 +89,9 @@ void Game::update()
 
 void Game::draw(SDL_Renderer* gRenderer)
 {
-	if (endGame(player1, player2))
+	if (endGame(dot.getPlayer1Score(), dot.getPlayer2Score()))
 	{
-		displayWinner(player1, player2, textColor, gRenderer);
+		displayWinner(dot.getPlayer1Score(), dot.getPlayer2Score(), textColor, gRenderer);
 	}
 	else
 	{
@@ -104,15 +101,9 @@ void Game::draw(SDL_Renderer* gRenderer)
 		
 		//Render dot
 		dot.render(gRenderer);
-
-		for (int i = 0; i < 10; i += 1)
-		{
-
-			Racket rDL = Racket(xDL, yDL);
-			rDL.miniRender(gRenderer);
-			yDL += 2 * pDL;
-
-		}
+		
+		//Render Dash
+		dl.render(gRenderer);
 
 		//Display score
 		dot.renderScore(gRenderer);
@@ -122,11 +113,7 @@ void Game::draw(SDL_Renderer* gRenderer)
 void Game::initGame()
 {
 	newGame = true;
-	player1 = 0;
-	player2 = 0;
-
-	dot.setPlayer1Score(player1);
-	dot.setPlayer2Score(player2);
+	dot.initScore();
 }
 
 bool Game::endGame(int p1, int p2)
@@ -148,6 +135,7 @@ void Game::free()
 	dot.free();
 	r1.free();
 	r2.free();
+	dl.free();
 }
 
 void Game::displayWinner(int p1, int p2, SDL_Color textColor, SDL_Renderer* gRenderer)

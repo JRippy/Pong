@@ -131,24 +131,24 @@ void Racket::render(SDL_Renderer* gRenderer)
 	gRacketTexture.render((int)rPosX, (int)rPosY, gRenderer);
 }
 
-void Racket::miniRender(SDL_Renderer* gRenderer)
-{
-
-	SDL_Rect racket;
-	racket.x = (int)rPosX;
-	racket.y = (int)rPosY;
-	racket.w = c.getRacketWidth();
-	racket.h = c.getMiniRacketHeight();
-
-	//Render racket
-	SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
-	SDL_RenderDrawRect(gRenderer, &racket);
-	SDL_RenderFillRect(gRenderer, &racket);
-
-
-	//Show the Racket
-	gRacketTexture.render((int)rPosX, (int)rPosY, gRenderer);
-}
+//void Racket::miniRender(SDL_Renderer* gRenderer)
+//{
+//
+//	SDL_Rect racket;
+//	racket.x = (int)rPosX;
+//	racket.y = (int)rPosY;
+//	racket.w = c.getRacketWidth();
+//	racket.h = c.getMiniRacketHeight();
+//
+//	//Render racket
+//	SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
+//	SDL_RenderDrawRect(gRenderer, &racket);
+//	SDL_RenderFillRect(gRenderer, &racket);
+//
+//
+//	//Show the Racket
+//	gRacketTexture.render((int)rPosX, (int)rPosY, gRenderer);
+//}
 
 void Racket::free()
 {

@@ -161,6 +161,7 @@
     <ClInclude Include="DashedLine.h" />
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="pch.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="DashedLine.cpp" />
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="pch.cpp">

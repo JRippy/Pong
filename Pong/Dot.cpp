@@ -11,28 +11,24 @@ Dot::Dot(SDL_Renderer * gRenderer) :
 	mVelY((float)c.getDotVel()),
 	Loaded(false)
 {
+	scoreDot = Score();
 	resetPosition();
 	Loaded = loadMediaDot(gRenderer);
 }
 
 int Dot::getPlayer1Score()
 {
-	return player1;
+	return scoreDot.getScore1();
 }
 
 int Dot::getPlayer2Score()
 {
-	return player2;
+	return scoreDot.getScore2();
 }
 
-void Dot::setPlayer1Score(int p1)
+void Dot::initScore()
 {
-	player1 = p1;
-}
-
-void Dot::setPlayer2Score(int p2)
-{
-	player2 = p2;
+	scoreDot.init();
 }
 
 float Dot::getMPosX()
@@ -76,14 +72,14 @@ void Dot::move(float timeStep)
 	{
 		mVelX = -mVelX;
 		resetPosition();
-		player2 += 1;
+		scoreDot.addScore1();
 
 	}
 	else if (mPosX + c.getDotWidth() >= c.getScreenWidth())
 	{
 		mVelX = -mVelX;
 		resetPosition();
-		player1 += 1;
+		scoreDot.addScore2();
 
 	}
 
@@ -122,18 +118,18 @@ void Dot::renderScore(SDL_Renderer* gRenderer)
 	NOTE
 	Pas de chargement de donnée à chaque frame. Le jeu plante au bout de 40 secondes.
 	*/
-	if (displayScore1 != player1 || displayScore2 != player2)
+	if (displayScore1 != scoreDot.getScore1() || displayScore2 != scoreDot.getScore2())
 	{
-		gInputTextTexture.loadFromRenderedText(std::to_string(player1).c_str(), textColor, gRenderer);
+		gInputTextTexture.loadFromRenderedText(std::to_string(scoreDot.getScore1()).c_str(), textColor, gRenderer);
 		gPromptTextTexture.render((c.getScreenWidth() - gPromptTextTexture.getWidth()) / 4, 0, gRenderer);
 		//gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) / 4, gPromptTextTexture.getHeight(), gRenderer);
 
-		gInputTextTexture2.loadFromRenderedText(std::to_string(player2).c_str(), textColor, gRenderer);
+		gInputTextTexture2.loadFromRenderedText(std::to_string(scoreDot.getScore2()).c_str(), textColor, gRenderer);
 		gPromptTextTexture.render(((c.getScreenWidth() - gPromptTextTexture.getWidth())) * 3 / 4, 0, gRenderer);
 		//gInputTextTexture.render((c.getScreenWidth() - gInputTextTexture.getWidth()) * 3 / 4, gPromptTextTexture.getHeight(), gRenderer);
 
-		displayScore1 = player1;
-		displayScore2 = player2;
+		displayScore1 = scoreDot.getScore1();
+		displayScore2 = scoreDot.getScore2();
 	}
 
 	//gInputTextTexture.loadFromRenderedText(std::to_string(player1).c_str(), textColor, gRenderer);
@@ -176,8 +172,6 @@ bool Dot::checkCollision(int ax, int ay)
 
 		mVelX = -mVelX;
 		mVelY = -c.getDotVel() * sin(bounceAngle);
-
-		printf("Bounce Ball : %f\n", mVelY);
 
 		return true;
 	}
