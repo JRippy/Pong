@@ -16,6 +16,11 @@ DashedLine::~DashedLine()
 {
 }
 
+void DashedLine::load(SDL_Renderer * gRenderer)
+{
+
+}
+
 void DashedLine::render(SDL_Renderer * gRenderer)
 {
 	//Render racket

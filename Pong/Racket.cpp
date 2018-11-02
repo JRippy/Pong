@@ -59,6 +59,13 @@ void Racket::handleEvent(SDL_Event& e, float timeStep)
 
 }
 
+void Racket::load(SDL_Renderer * gRenderer)
+{
+	racket.w = c.getRacketWidth();
+	racket.h = c.getRacketHeight();
+
+}
+
 void Racket::move(float timeStep)
 {
 
@@ -114,18 +121,13 @@ void Racket::moveOpponent(float timeStep, float dPosX, float dPosY)
 
 void Racket::render(SDL_Renderer* gRenderer)
 {
-
-	SDL_Rect racket;
 	racket.x = (int)rPosX;
 	racket.y = (int)rPosY;
-	racket.w = c.getRacketWidth();
-	racket.h = c.getRacketHeight();
 
 	//Render racket
 	SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
 	SDL_RenderDrawRect(gRenderer, &racket);
 	SDL_RenderFillRect(gRenderer, &racket);
-
 
 	//Show the Racket
 	gRacketTexture.render((int)rPosX, (int)rPosY, gRenderer);

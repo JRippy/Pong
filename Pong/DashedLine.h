@@ -7,6 +7,8 @@ public:
 	DashedLine();
 	~DashedLine();
 
+	void load(SDL_Renderer* gRenderer);
+
 	void render(SDL_Renderer* gRenderer);
 
 	//Texture

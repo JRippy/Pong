@@ -1,12 +1,2 @@
-﻿  pch.cpp
-  Config.cpp
-  DashedLine.cpp
-  Dot.cpp
-  Game.cpp
-  Score.cpp
-  Texture.cpp
-  Timer.cpp
-  Pong.cpp
-  Racket.cpp
-  Génération de code en cours...
-  Pong.vcxproj -> C:\Users\Julien\source\repos\Pong\Debug\Pong.exe
+﻿  Game.cpp
+  Pong.vcxproj -> C:\Users\etudiant\Documents\C++\Pong\Pong-master\Pong\Debug\Pong.exe

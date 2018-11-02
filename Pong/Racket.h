@@ -26,6 +26,9 @@ public:
 	//Takes key presses and adjusts the racket's velocity
 	void handleEvent(SDL_Event& e, float timeStep);
 
+	//Load
+	void load(SDL_Renderer* gRenderer);
+
 	//Moves the racket
 	void move(float timeStep);
 
@@ -43,4 +46,6 @@ private:
 
 	//Texture
 	Texture gRacketTexture;
+
+	SDL_Rect racket;
 };

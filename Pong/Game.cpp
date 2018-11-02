@@ -23,10 +23,14 @@ bool Game::load(SDL_Renderer* gRenderer)
 
 	r2 = Racket((float)c.getScreenWidth() - c.getRacketWidth(), (float)c.getScreenWidth() / 2 - c.getRacketHeight() / 2);
 
+	r1.load(gRenderer);
+	r2.load(gRenderer);
+
 	//Calculate time step
 	timeStep = stepTimer.getTicks() / 1000.f;
 
 	dl = DashedLine();
+	dl.load(gRenderer);
 
 	dot = Dot(gRenderer);
 	dot.loadMediaDot(gRenderer);
@@ -114,6 +118,7 @@ void Game::initGame()
 {
 	newGame = true;
 	dot.initScore();
+	dot.resetPosition();
 }
 
 bool Game::endGame(int p1, int p2)
