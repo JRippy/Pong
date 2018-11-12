@@ -4,8 +4,8 @@
 
 DashedLine::DashedLine()
 {
-	dashRacket.x = 0;
-	dashRacket.y = 0;
+	dashRacket.x = 200;
+	dashRacket.y = 200;
 	dashRacket.w = c.getRacketWidth();
 	dashRacket.h = c.getMiniRacketHeight();
 
@@ -33,10 +33,15 @@ void DashedLine::render(SDL_Renderer * gRenderer)
 
 	for (int i = 0; i < 10; i ++)
 	{
-
+		printf("Numero Racket : %d; Position Racket : %d \n", i, m);
 		//Show the Racket
+		dashRacket.x = n;
+		dashRacket.y = m;
+		SDL_RenderDrawRect(gRenderer, &dashRacket);
+		SDL_RenderFillRect(gRenderer, &dashRacket);
 		gRacketTexture.render(n, m, gRenderer);
 		m += 2 * dashRacket.h;
+
 	}
 
 }
